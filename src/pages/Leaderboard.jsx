@@ -66,7 +66,7 @@ export default function Leaderboard() {
   return (
     <div
       ref={containerRef}
-      className="min-h-dvh bg-[var(--color-bg)] px-4 pb-24 pt-6 overflow-y-auto"
+      className="min-h-dvh bg-[var(--color-bg)] px-4 pb-24 pt-10 overflow-y-auto"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}

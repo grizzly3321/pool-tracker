@@ -176,7 +176,7 @@ export default function RecordMatch() {
   const currentStep = selected.length < 2 ? 1 : !winner ? 2 : !photo ? 3 : 4
 
   return (
-    <div className="min-h-dvh bg-[var(--color-bg)] px-4 pt-6 pb-8">
+    <div className="min-h-dvh bg-[var(--color-bg)] px-4 pt-10 pb-8">
       <div className="max-w-md mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
