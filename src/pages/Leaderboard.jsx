@@ -169,7 +169,7 @@ export default function Leaderboard() {
       </div>
 
       {/* Record Match Button */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 pb-[calc(3.5rem+env(safe-area-inset-bottom))] bg-gradient-to-t from-[var(--color-bg)] via-[var(--color-bg)] to-transparent">
+      <div className="fixed bottom-0 left-0 right-0 p-4 pb-[calc(7rem+env(safe-area-inset-bottom))] bg-gradient-to-t from-[var(--color-bg)] via-[var(--color-bg)] to-transparent">
         <Link
           to="/record"
           className="block w-full max-w-md mx-auto bg-green-600 hover:bg-green-700
