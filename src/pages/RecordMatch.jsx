@@ -176,10 +176,10 @@ export default function RecordMatch() {
   const currentStep = selected.length < 2 ? 1 : !winner ? 2 : !photo ? 3 : 4
 
   return (
-    <div className="min-h-dvh bg-[var(--color-bg)] px-4 pt-6 pb-8">
+    <div className="min-h-dvh bg-[var(--color-bg)] px-4 pt-10 pb-8">
       <div className="max-w-md mx-auto">
         {/* Header */}
-        <div className="flex items-center justify-between mb-3">
+        <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
             <Link
               to="/"
@@ -213,21 +213,21 @@ export default function RecordMatch() {
         ) : (
           <>
             {/* Step 1: Who played? */}
-            <div className="mb-3">
-              <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wide mb-2">
+            <div className="mb-6">
+              <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wide mb-3">
                 Who played?
                 <span className="text-gray-600 normal-case font-normal ml-2">
                   Select 2
                 </span>
               </h2>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2 gap-3">
                 {players.map((player) => {
                   const isSelected = selected.find((p) => p.id === player.id)
                   return (
                     <button
                       key={player.id}
                       onClick={() => togglePlayer(player)}
-                      className={`min-h-[48px] py-2.5 rounded-xl font-semibold text-lg transition-all
+                      className={`min-h-[48px] py-4 rounded-xl font-semibold text-lg transition-all
                                   duration-150 active:scale-[0.96]
                         ${
                           isSelected
@@ -244,11 +244,11 @@ export default function RecordMatch() {
 
             {/* Step 2: Who won? */}
             {selected.length === 2 && (
-              <div className="mb-3">
-                <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wide mb-2">
+              <div className="mb-6">
+                <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wide mb-3">
                   Who won?
                 </h2>
-                <div className="grid grid-cols-2 gap-2">
+                <div className="grid grid-cols-2 gap-3">
                   {selected.map((player) => (
                     <button
                       key={player.id}
@@ -257,7 +257,7 @@ export default function RecordMatch() {
                         setConfirming(false)
                         setError(null)
                       }}
-                      className={`min-h-[48px] py-2.5 rounded-xl font-semibold text-lg transition-all
+                      className={`min-h-[48px] py-4 rounded-xl font-semibold text-lg transition-all
                                   duration-150 active:scale-[0.96]
                         ${
                           winner?.id === player.id
@@ -275,8 +275,8 @@ export default function RecordMatch() {
 
             {/* Step 3: Photo */}
             {winner && (
-              <div className="mb-3">
-                <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wide mb-2">
+              <div className="mb-8">
+                <h2 className="text-sm font-semibold text-gray-400 uppercase tracking-wide mb-3">
                   Match Photo
                   <span className="text-gray-600 normal-case font-normal ml-2">
                     Required — the proof!
@@ -287,7 +287,7 @@ export default function RecordMatch() {
                     <img
                       src={preview}
                       alt="Match preview"
-                      className="w-full rounded-xl max-h-40 object-cover"
+                      className="w-full rounded-xl max-h-64 object-cover"
                     />
                     <button
                       onClick={clearPhoto}
@@ -306,7 +306,7 @@ export default function RecordMatch() {
                       onChange={handlePhotoChange}
                       className="hidden"
                     />
-                    <div className="bg-[var(--color-card)] rounded-xl p-4 text-center
+                    <div className="bg-[var(--color-card)] rounded-xl p-8 text-center
                                     hover:bg-[var(--color-card-hover)] transition-colors
                                     border-2 border-dashed border-gray-700 min-h-[48px]">
                       <p className="text-3xl mb-2">📷</p>
@@ -370,7 +370,7 @@ export default function RecordMatch() {
               <button
                 onClick={handleSubmit}
                 disabled={!canSubmit}
-                className={`w-full min-h-[48px] py-3 rounded-xl font-bold text-lg transition-all
+                className={`w-full min-h-[48px] py-4 rounded-xl font-bold text-lg transition-all
                   ${
                     canSubmit
                       ? 'bg-green-600 hover:bg-green-700 text-white active:scale-[0.98]'
