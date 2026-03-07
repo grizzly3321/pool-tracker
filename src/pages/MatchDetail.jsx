@@ -81,14 +81,19 @@ export default function MatchDetail() {
     <div className="min-h-dvh bg-[var(--color-bg)] px-4 pt-6 pb-8">
       <div className="max-w-md mx-auto">
         {/* Header */}
-        <div className="sticky top-0 z-10 bg-[var(--color-bg)] -mx-4 px-4 pt-2 pb-3">
-        <button
-          onClick={() => navigate(-1)}
-          className="text-gray-400 hover:text-white transition-colors text-lg block"
-        >
-          ← Back
-        </button>
+        <div className="fixed top-0 left-0 right-0 z-10 bg-[var(--color-bg)] pt-[env(safe-area-inset-top)]">
+          <div className="max-w-md mx-auto px-4 py-3">
+            <button
+              onClick={() => navigate(-1)}
+              className="text-gray-400 hover:text-white transition-colors text-lg block"
+            >
+              ← Back
+            </button>
+          </div>
         </div>
+
+        {/* Spacer for fixed header */}
+        <div className="h-12" />
 
         {/* Match detail card */}
         <div className="bg-[var(--color-card)] rounded-xl p-5 mb-6">
