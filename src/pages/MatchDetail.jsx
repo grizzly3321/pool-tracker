@@ -78,16 +78,20 @@ export default function MatchDetail() {
   const loser = match.player1.id === match.winner_id ? match.player2 : match.player1
 
   return (
-    <div className="min-h-dvh bg-[var(--color-bg)] px-4 pt-6 pb-8">
-      <div className="max-w-md mx-auto">
-        {/* Header */}
-        <button
-          onClick={() => navigate(-1)}
-          className="text-gray-400 hover:text-white transition-colors text-lg mb-6 block"
-        >
-          ← Back
-        </button>
+    <div className="min-h-dvh bg-[var(--color-bg)] pb-8">
+      {/* Fixed Header */}
+      <div className="fixed top-0 left-0 right-0 z-10 bg-[var(--color-bg)] pt-[env(safe-area-inset-top)]">
+        <div className="max-w-md mx-auto px-4 py-3">
+          <button
+            onClick={() => navigate(-1)}
+            className="text-gray-400 hover:text-white transition-colors text-lg block"
+          >
+            ← Back
+          </button>
+        </div>
+      </div>
 
+      <div className="max-w-md mx-auto px-4 pt-[calc(env(safe-area-inset-top)+3.5rem)]">
         {/* Match detail card */}
         <div className="bg-[var(--color-card)] rounded-xl p-5 mb-6">
           {/* Date */}
