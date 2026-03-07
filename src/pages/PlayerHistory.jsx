@@ -127,14 +127,14 @@ export default function PlayerHistory() {
     <div className="min-h-dvh bg-[var(--color-bg)] pb-8">
       {/* Fixed Header */}
       <div className="fixed top-0 left-0 right-0 z-10 bg-[var(--color-bg)] pt-[env(safe-area-inset-top)]">
-        <div className="max-w-md mx-auto flex items-center gap-3 px-4 py-3">
+        <div className="max-w-md mx-auto flex items-center px-4 py-3 relative">
           <Link
             to="/"
-            className="text-gray-400 hover:text-white transition-colors text-lg"
+            className="text-gray-400 hover:text-white transition-colors text-lg z-10"
           >
             ← Back
           </Link>
-          <h1 className="text-xl font-bold">
+          <h1 className="text-xl font-bold absolute inset-0 flex items-center justify-center">
             {player?.name}'s Matches
           </h1>
         </div>

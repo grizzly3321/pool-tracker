@@ -8,6 +8,7 @@ export default function Leaderboard() {
   const [loading, setLoading] = useState(true)
   const [refreshing, setRefreshing] = useState(false)
   const [lastUpdated, setLastUpdated] = useState(null)
+  const [matchCounts, setMatchCounts] = useState({})
 
   // Pull-to-refresh state
   const containerRef = useRef(null)
@@ -28,6 +29,20 @@ export default function Leaderboard() {
     } else {
       setPlayers(data || [])
       setLastUpdated(new Date())
+    }
+
+    // Fetch match counts per player pair
+    const { data: matches } = await supabase
+      .from('matches')
+      .select('player1_id, player2_id')
+
+    if (matches) {
+      const counts = {}
+      for (const m of matches) {
+        const key = [m.player1_id, m.player2_id].sort().join('-')
+        counts[key] = (counts[key] || 0) + 1
+      }
+      setMatchCounts(counts)
     }
 
     setLoading(false)
@@ -66,7 +81,7 @@ export default function Leaderboard() {
   return (
     <div
       ref={containerRef}
-      className="min-h-dvh bg-[var(--color-bg)] px-4 pb-24 pt-10 overflow-y-auto"
+      className="min-h-dvh bg-[var(--color-bg)] px-4 pb-48 pt-10 overflow-y-auto"
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -168,8 +183,54 @@ export default function Leaderboard() {
         )}
       </div>
 
+      {/* Match Count Matrix */}
+      {!loading && players.length > 1 && (
+        <div className="max-w-md mx-auto mt-6">
+          <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2 text-center">
+            Matches Played
+          </p>
+          <div className="bg-[var(--color-card)] rounded-xl p-3 overflow-x-auto">
+            <table className="w-full text-xs text-center">
+              <thead>
+                <tr>
+                  <th />
+                  {players.map((p) => (
+                    <th key={p.id} className="text-gray-500 font-medium px-2 pb-1">
+                      {p.name.split(' ')[0]}
+                    </th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {players.map((row) => (
+                  <tr key={row.id}>
+                    <td className="text-gray-500 font-medium text-right pr-2 py-1">
+                      {row.name.split(' ')[0]}
+                    </td>
+                    {players.map((col) => {
+                      if (row.id === col.id) {
+                        return (
+                          <td key={col.id} className="text-gray-700 py-1">—</td>
+                        )
+                      }
+                      const key = [row.id, col.id].sort().join('-')
+                      const count = matchCounts[key] || 0
+                      return (
+                        <td key={col.id} className={`py-1 ${count >= 10 ? 'text-green-400' : 'text-gray-400'}`}>
+                          {count >= 10 ? '✓' : count || '0'}
+                        </td>
+                      )
+                    })}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
       {/* Record Match Button */}
-      <div className="fixed bottom-0 left-0 right-0 p-4 pb-[calc(7rem+env(safe-area-inset-bottom))] bg-gradient-to-t from-[var(--color-bg)] via-[var(--color-bg)] to-transparent">
+      <div className="fixed bottom-0 left-0 right-0 p-4 pb-[calc(2rem+env(safe-area-inset-bottom))] bg-gradient-to-t from-[var(--color-bg)] via-[var(--color-bg)] to-transparent">
         <Link
           to="/record"
           className="block w-full max-w-md mx-auto bg-green-600 hover:bg-green-700
