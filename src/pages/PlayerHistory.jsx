@@ -127,7 +127,7 @@ export default function PlayerHistory() {
     <div className="min-h-dvh bg-[var(--color-bg)] px-4 pt-6 pb-8">
       <div className="max-w-md mx-auto">
         {/* Header */}
-        <div className="flex items-center gap-3 mb-6">
+        <div className="sticky top-0 z-10 bg-[var(--color-bg)] flex items-center gap-3 pb-3 -mx-4 px-4 pt-2">
           <Link
             to="/"
             className="text-gray-400 hover:text-white transition-colors text-lg"

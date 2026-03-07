@@ -9,10 +9,6 @@
   --color-loss: #ef4444;
 }
 
-html {
-  overscroll-behavior: none;
-}
-
 body {
   margin: 0;
   background-color: var(--color-bg);
@@ -21,7 +17,6 @@ body {
   min-height: 100dvh;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
-  overscroll-behavior-y: none;
 }
 
 #root {
